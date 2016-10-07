@@ -1,0 +1,26 @@
+[
+  {
+    "_id": "Web-Analytics",
+    "_type": "dashboard",
+    "_source": {
+      "title": "Web Analytics",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"Traffic-by-Country-ampersand-OS\",\"panelIndex\":3,\"row\":5,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":4,\"id\":\"Traffic-vs.-Location\",\"panelIndex\":4,\"row\":8,\"size_x\":9,\"size_y\":4,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Unique-Visitors\",\"panelIndex\":5,\"row\":3,\"size_x\":2,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Unique-Visits-by-City\",\"panelIndex\":8,\"row\":8,\"size_x\":3,\"size_y\":4,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Total-Visitors\",\"panelIndex\":9,\"row\":1,\"size_x\":2,\"size_y\":2,\"type\":\"visualization\"},{\"id\":\"Bytes-vs.-Time\",\"type\":\"visualization\",\"panelIndex\":11,\"size_x\":6,\"size_y\":3,\"col\":5,\"row\":5},{\"id\":\"Response-Code-by-Country\",\"type\":\"visualization\",\"panelIndex\":14,\"size_x\":2,\"size_y\":7,\"col\":11,\"row\":1},{\"id\":\"Response-Code-by-Time\",\"type\":\"visualization\",\"panelIndex\":15,\"size_x\":8,\"size_y\":4,\"col\":3,\"row\":1}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-4\":{\"mapCenter\":[14.774882506516272,5.2734375]},\"P-8\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"P-15\":{\"vis\":{\"colors\":{\"200\":\"#629E51\"}}}}",
+      "version": 1,
+      "timeRestore": true,
+      "timeTo": "2016-09-26T13:37:46.474Z",
+      "timeFrom": "2016-09-19T00:12:50.589Z",
+      "refreshInterval": {
+        "display": "Off",
+        "pause": false,
+        "value": 0
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
+      }
+    }
+  }
+]

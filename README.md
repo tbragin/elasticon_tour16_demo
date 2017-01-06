@@ -14,8 +14,8 @@ https://github.com/kosho/ncedc-earthquakes
 This section walks you through setup of three datasets - “earthquake data”, “apache logs”, and “log search”.
 
 ## Elastic Stack Setup
-* Download and install Elasticsearch, Kibana, and Logstash versions 5.0.0.
-* Install x-pack.
+* Download and install Elasticsearch, Kibana, and Logstash, and X-Pack: https://www.elastic.co/start
+* This setup was tested with 5.0.x and 5.1.x
 
 ## General setup
 * Download all files from this repo: https://github.com/tbragin/elasticon_tour16_demo

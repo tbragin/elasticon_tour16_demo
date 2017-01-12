@@ -35,7 +35,7 @@ This section walks you through setup of three datasets - “earthquake data”, 
 
 `.es(index=ncedc-earthquakes,metric=avg:depth).points(fill=5).color(#a3e0a3).label('raw').yaxis(label="Depth"),.es(index=ncedc-earthquakes,metric=avg:depth).lines().movingaverage(52).label('5 year moving avg').yaxis(label="Depth").color(#257425 ), .es(index=ncedc-earthquakes,metric=avg:depth).lines().movingaverage(10).label('1 year moving avg').yaxis(label="Depth").color(#00b359)`
 
-
+<img width="1390" alt="screen shot 2017-01-05 at 10 22 57 pm" src="https://cloud.githubusercontent.com/assets/933397/21910274/25f24142-d8d0-11e6-9ebd-cf9b94edbfe9.png">
 
 ## Apache Logs
 * Modify apache_logstash.conf with Elasticsearch URL and credentials using command:
@@ -44,6 +44,7 @@ This section walks you through setup of three datasets - “earthquake data”, 
 * Upload visualizations and dashboards from JSON files you downloaded
 * Save dashboard with an appropriate time range 
 
+<img width="1388" alt="screen shot 2017-01-05 at 10 23 14 pm" src="https://cloud.githubusercontent.com/assets/933397/21910273/25f1845a-d8d0-11e6-9afc-bbdde45c5f03.png">
 
 ## Log Search
 
@@ -51,3 +52,9 @@ This section walks you through setup of three datasets - “earthquake data”, 
 `cat logs_small | bin/logstash -f logs_small.conf`
 * In Kibana, create `logstash-*` index pattern
 * Save a search with * named “Log Search”
+
+<img width="1383" alt="screen shot 2017-01-05 at 10 23 50 pm" src="https://cloud.githubusercontent.com/assets/933397/21910270/25ed0380-d8d0-11e6-9a67-e941530ed925.png">
+
+
+
+

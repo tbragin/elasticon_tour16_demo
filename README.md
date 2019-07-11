@@ -14,18 +14,21 @@ https://github.com/kosho/ncedc-earthquakes
 This section walks you through setup of three datasets - “earthquake data”, “apache logs”, and “log search”.
 
 ## Elastic Stack Setup
+
+### System-wide setup
+
 * Download and install Elasticsearch, Kibana, and Logstash, and X-Pack: https://www.elastic.co/start
 * This setup was tested with 5.0.x and 5.1.x
 
-## General setup
+#### General setup
 * Download all files from this repo: https://github.com/tbragin/elasticon_tour16_demo
 * Put all files in the Logstash directory
 
-## Earthquake Data
-* Extract the dataset archive with `tar zxf ncedc-earthquakes-dataset.tar.gz`
-* Modify `ncedc-earthquakes-logstash.conf` with Elasticsearch URL and credentials using command:
-`cat earthquakes.txt| bin/logstash -f ncedc-earthquakes-logstash.conf`
-* In Kibana, createa  `ncedc-earthquakes` index pattern
+#### Earthquake Data
+* Extract the dataset archive with `tar zxf data/ncedc-earthquakes-dataset.tar.gz -Cdata`
+* Modify `pipeline/ncedc-earthquakes-logstash.conf` with Elasticsearch URL and credentials using command:
+`cat data/earthquakes.txt| bin/logstash -f ELK5/pipeline/ncedc-earthquakes-logstash.conf`
+* In Kibana, create a  `ncedc-earthquakes` index pattern
 * In Timelion, create a new dashboard and add these three visualizations
 * Save dashboard with a “Last 20 years” time range
 
@@ -37,24 +40,20 @@ This section walks you through setup of three datasets - “earthquake data”, 
 
 <img width="1390" alt="screen shot 2017-01-05 at 10 22 57 pm" src="https://cloud.githubusercontent.com/assets/933397/21910274/25f24142-d8d0-11e6-9ebd-cf9b94edbfe9.png">
 
-## Apache Logs
-* Modify apache_logstash.conf with Elasticsearch URL and credentials using command:
-`cat apache_logs| bin/logstash -f apache_logstash.conf `
+#### Apache Logs
+* Modify `ELK5/pipeline/apache_logstash.conf` with Elasticsearch URL and credentials, and start `logstash` with:
+`cat data/apache_logs| bin/logstash -f ELK5/pipeline/apache_logstash.conf `
 * In Kibana, create `apache_elk_example` index pattern
-* Upload visualizations and dashboards from JSON files you downloaded
+* Upload visualizations and dashboards from JSON files in `ELK5/kibana-objects`
 * Save dashboard with an appropriate time range 
 
 <img width="1388" alt="screen shot 2017-01-05 at 10 23 14 pm" src="https://cloud.githubusercontent.com/assets/933397/21910273/25f1845a-d8d0-11e6-9afc-bbdde45c5f03.png">
 
-## Log Search
+#### Log Search
 
-* Modify logs_small.conf with Elasticsearch URL and credentials using command:
-`cat logs_small | bin/logstash -f logs_small.conf`
+* Modify `ELK5/pipeline/logs_small.conf` with Elasticsearch URL and credentials, and start `logstash` with:
+`cat data/logs_small | bin/logstash -f /ELK5/pipeline/logs_small.conf`
 * In Kibana, create `logstash-*` index pattern
 * Save a search with * named “Log Search”
 
 <img width="1383" alt="screen shot 2017-01-05 at 10 23 50 pm" src="https://cloud.githubusercontent.com/assets/933397/21910270/25ed0380-d8d0-11e6-9a67-e941530ed925.png">
-
-
-
-

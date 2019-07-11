@@ -1,0 +1,61 @@
+{
+  "index_patterns": ["apache_elk_example"],
+  "settings": {
+     "index.refresh_interval": "5s"
+  },
+  "mappings": {
+        "dynamic_templates": [
+           {
+              "message_field": {
+                 "mapping": {
+                    "norms": false,
+                    "type": "text"
+                 },
+                 "match_mapping_type": "string",
+                 "match": "message"
+              }
+           },
+           {
+              "string_fields": {
+                 "mapping": {
+                    "norms": false,
+                    "type": "text",
+                    "fields": {
+                       "raw": {
+                          "ignore_above": 256,
+                          "type": "keyword"
+                       }
+                    }
+                 },
+                 "match_mapping_type": "string",
+                 "match": "*"
+              }
+           }
+        ],
+        "properties": {
+           "response" : {
+              "type": "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                },
+                "long" : {
+                  "type" : "long"
+                }
+              }
+           },
+           "geoip": {
+              "dynamic": true,
+              "properties": {
+                 "location": {
+                    "type": "geo_point"
+                 }
+              },
+              "type": "object"
+           },
+           "@version": {
+              "type": "keyword"
+           }
+        }
+     }
+  }

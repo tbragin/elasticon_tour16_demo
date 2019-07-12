@@ -17,7 +17,7 @@ This section walks you through setup of three datasets - “earthquake data”, 
 
 ### Setup with Docker
 
-This facilitates the official docker images for ELK version 7.2.0.
+This uses the official docker images for ELK version 7.2.0.
 
 #### System requirements
 

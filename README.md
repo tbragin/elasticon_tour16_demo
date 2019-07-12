@@ -86,7 +86,7 @@ The kibana application is eventually accessible at http://localhost:5601.
 * In Kibana, create `logstash-*` index pattern
 * Save a search with * named “Log Search”
 
-See also the system-wide implementation ([here][#original-logs-small])
+See also the system-wide implementation ([here](#original-logs-small))
 
 ### System-wide setup
 

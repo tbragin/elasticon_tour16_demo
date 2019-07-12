@@ -1,6 +1,6 @@
 # elasticon_tour16_demo
 
-This repo contains setup for Elasticon Tour 16 Kibana demo. 
+This repo contains setup for Elasticon Tour 16 Kibana demo.
 
 Based on the following examples:
 
@@ -15,6 +15,73 @@ This section walks you through setup of three datasets - “earthquake data”, 
 
 ## Elastic Stack Setup
 
+### Setup with Docker
+
+#### System requirements
+
+* `docker`
+* `docker-compose`
+
+#### Start `elasticsearch` and `kibana`
+
+```
+$ docker-compose up -d kibana
+```
+
+You can monitor logs with `docker logs -f [kibana|es0]`.
+
+#### Earthquake data
+
+* Extract the dataset archive with `tar zxf data/ncedc-earthquakes-dataset.tar.gz -Cdata`
+* Index the data to `elasticsearch` through `logstash`:
+
+  ```
+  $ docker-compose up -d logstash
+  ```
+
+  This is equivalent to
+  ```
+  $ docker-compose run logstash /bin/bash -c \
+      "cat data/earthquakes.txt | bin/logstash -f pipeline/ncedc-earthquakes-logstash.conf"
+  ```
+
+* In Kibana, perform the following operations through Management:
+  * Create an index pattern with the name `ncedc-earthquakes`.
+  * Create visualizations. There are two ways to do this:
+    * Either import the saved-objects from
+      `ELK7/kibana-objects/earthquakes_dashboard.ndjson`, or
+    * Create the visualizations from scratch through Timelion
+      on a new dashboard, following the instructions in the system-wide
+      implementation (see [here](#original-eqdata))
+    **NOTE**: Set the time-range for the `Last 20 years`.
+
+#### Apache logs
+
+* Index the data to `elasticsearch` through `logstash`:
+
+  ```
+  $ docker-compose run logstash /bin/bash -c \
+      "cat data/apache_logs | bin/logstash -f pipeline/apache-logstash.conf"
+  ```
+
+* In Kibana, perform the following operations through Management:
+  * Create an index pattern with the name `apache-elk-example`.
+  * Create visualizations by importing
+      `ELK7/kibana-objects/webanalytics_dashboard.ndjson`.
+
+#### Log search
+
+* Index the data to `elasticsearch` through `logstash`:
+
+  ```
+  $ docker-compose run logstash /bin/bash -c \
+      "cat data/logs_small | bin/logstash -f pipeline/logs_small.conf"
+  ```
+* In Kibana, create `logstash-*` index pattern
+* Save a search with * named “Log Search”
+
+See also the system-wide implementation ([here][#original-logs-small])
+
 ### System-wide setup
 
 * Download and install Elasticsearch, Kibana, and Logstash, and X-Pack: https://www.elastic.co/start
@@ -24,6 +91,7 @@ This section walks you through setup of three datasets - “earthquake data”, 
 * Download all files from this repo: https://github.com/tbragin/elasticon_tour16_demo
 * Put all files in the Logstash directory
 
+<a name="original-eqdata"></a>
 #### Earthquake Data
 * Extract the dataset archive with `tar zxf data/ncedc-earthquakes-dataset.tar.gz -Cdata`
 * Modify `pipeline/ncedc-earthquakes-logstash.conf` with Elasticsearch URL and credentials using command:
@@ -45,10 +113,11 @@ This section walks you through setup of three datasets - “earthquake data”, 
 `cat data/apache_logs| bin/logstash -f ELK5/pipeline/apache_logstash.conf `
 * In Kibana, create `apache_elk_example` index pattern
 * Upload visualizations and dashboards from JSON files in `ELK5/kibana-objects`
-* Save dashboard with an appropriate time range 
+* Save dashboard with an appropriate time range
 
 <img width="1388" alt="screen shot 2017-01-05 at 10 23 14 pm" src="https://cloud.githubusercontent.com/assets/933397/21910273/25f1845a-d8d0-11e6-9afc-bbdde45c5f03.png">
 
+<a name="original-logs-small"></a>
 #### Log Search
 
 * Modify `ELK5/pipeline/logs_small.conf` with Elasticsearch URL and credentials, and start `logstash` with:

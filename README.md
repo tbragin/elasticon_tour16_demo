@@ -17,6 +17,8 @@ This section walks you through setup of three datasets - “earthquake data”, 
 
 ### Setup with Docker
 
+This facilitates the official docker images for ELK version 7.2.0.
+
 #### System requirements
 
 * `docker`
@@ -29,6 +31,8 @@ $ docker-compose up -d kibana
 ```
 
 You can monitor logs with `docker logs -f [kibana|es0]`.
+
+The kibana application is eventually accessible at http://localhost:5601.
 
 #### Earthquake data
 
@@ -48,12 +52,14 @@ You can monitor logs with `docker logs -f [kibana|es0]`.
 * In Kibana, perform the following operations through Management:
   * Create an index pattern with the name `ncedc-earthquakes`.
   * Create visualizations. There are two ways to do this:
+
     * Either import the saved-objects from
       `ELK7/kibana-objects/earthquakes_dashboard.ndjson`, or
     * Create the visualizations from scratch through Timelion
       on a new dashboard, following the instructions in the system-wide
       implementation (see [here](#original-eqdata))
-    **NOTE**: Set the time-range for the `Last 20 years`.
+
+      > **NOTE**: Set the time-range for the `Last 20 years`.
 
 #### Apache logs
 

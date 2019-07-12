@@ -1,0 +1,52 @@
+version: '3.2'
+
+services:
+
+    es0:
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.2.0
+        container_name: es0
+        environment:
+            discovery.type: single-node
+        ports:
+            - 9200:9200
+            - 9300:9300
+        networks:
+            esnet:
+                aliases:
+                    - elasticsearch
+
+    kibana:
+        image: docker.elastic.co/kibana/kibana:7.2.0
+        container_name: kibana
+        ports:
+            - 5601:5601
+        networks:
+            esnet:
+        depends_on:
+            - es0
+
+    logstash:
+        image: docker.elastic.co/logstash/logstash:7.2.0
+        container_name: logstash
+        environment:
+            xpack.monitoring.enabled: "true"
+        networks:
+            esnet:
+        volumes:
+            - type: bind
+              source: ./data/
+              target: /usr/share/logstash/data
+            - type: bind
+              source: ./ELK7/pipeline/
+              target: /usr/share/logstash/pipeline/
+            - type: bind
+              source: ./ELK7/templates/
+              target: /usr/share/logstash/templates
+        command: /bin/bash -c "cat data/earthquakes.txt |
+            bin/logstash -f pipeline/ncedc-earthquakes-logstash.conf"
+        depends_on:
+            - es0
+
+
+networks:
+    esnet:
